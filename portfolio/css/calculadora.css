@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body{
+    padding:0 !important;
+    margin:0 ;
+    outline: none !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+h1{
+    display: flex !important;
+  justify-content: center !important; 
+  align-items: center;
+}
+div#calculadora { 
+    font-family: 'Montserrat', sans-serif !important;
+    width: 400px !important; 
+    margin-left: auto !important;
+    margin-right: auto !important; 
+    font-size: 22px !important;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+}
+input#primeira, input#segunda, input#tercerira, input#quarta{
+    margin: 100px;
+    border: none;
+    border-radius: 3px;
+}
+input[type=text]{
+    height: 40px;
+    background: #E8F6EF !important;
+}
+input[type=button]{
+    width: 100px;
+    height: 50px;
+    transition: ease 0.2s;
+    cursor: pointer;
+}
+div#calculadora div{
+    display: flex;
+}
+div#calculadora div input:nth-child(4){
+    background: #E8F6EF;
+}
+div#quarta input:nth-child(1), div#calculadora{
+    border-bottom-left-radius: 35px;
+}
+div#quarta input:nth-child(1){
+    background: #FFE194;
+}
+div#quarta input:nth-child(3){
+    background: #FFE194;
+}
+div#quarta input:nth-child(4), div#calculadora{
+    border-bottom-right-radius: 35px;
+}
+input[type=button]:hover{
+    filter:brightness(50%);
+}
+input[type=button]:active{
+    transform: scale(0.9);
+}
