@@ -9,4 +9,7 @@ function reseta(){
 function calcula(){
     resultado = eval(valor);
     document.calc.visor.value = resultado.toLocaleString('pt-br');
+    // M.toast({  
+    //     html: `Pressionei, ${valor} e o display é ${resultado}` 
+    // })
 }

@@ -10,7 +10,11 @@ body{
 h1{
     display: flex !important;
   justify-content: center !important; 
-  align-items: center;
+  align-items: center !important;
+
+}
+#titulo{
+    border: auto !important;
 }
 div#calculadora { 
     font-family: 'Montserrat', sans-serif !important;

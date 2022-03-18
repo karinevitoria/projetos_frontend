@@ -6,6 +6,10 @@ function mudaCalc() {
     $("#content").load("pages/calculadora.html");
     $(".sidenav-overlay").click();
 }
+function mudaCalcSenac() {
+    $("#content").load("pages/calculadorasenac.html");
+    $(".sidenav-overlay").click();
+}
 function mudaAluno() {
     $("#content").load("pages/nota-aluno.html");
     $(".sidenav-overlay").click();

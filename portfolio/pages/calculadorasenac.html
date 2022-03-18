@@ -1,0 +1,147 @@
+<div class="container">
+
+    <div class="row">
+        <div class="row display-calculo div-calculo grey darken-4">
+            <div id="resultadoCalc" class="display-calculo">0</div>
+        </div>
+        <div class="col s3">
+            <a onclick="btnClique(1)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">1</a>
+            <a onclick="btnClique(4)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">4</a>
+            <a onclick="btnClique(7)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">7</a>
+            <a onclick="btnClique('C')" class="waves-effect btn-calcular orange darken-3 waves-light btn-large">C</a>
+        </div>
+        <div class="col s3">
+            <a onclick="btnClique(2)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">2</a>
+            <a onclick="btnClique(5)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">5</a>
+            <a onclick="btnClique(8)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">8</a>
+            <a onclick="btnClique(0)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">0</a>
+        </div>
+        <div class="col s3">
+            <a onclick="btnClique(3)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">3</a>
+            <a onclick="btnClique(6)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">6</a>
+            <a onclick="btnClique(9)" class="waves-effect btn-calcular  cyan darken-3 waves-light btn-large">9</a>
+            <a onclick="btnClique('=')" class="waves-effect btn-calcular orange darken-3 waves-light btn-large">=</a>
+        </div>
+        <div class="col s3">
+            <a onclick="btnClique('+')" class="waves-effect btn-calcular blue darken-3 waves-light btn-large">+</a>
+            <a onclick="btnClique('-')" class="waves-effect btn-calcular blue darken-3 waves-light btn-large">-</a>
+            <a onclick="btnClique('*')" class="waves-effect btn-calcular blue darken-3 waves-light btn-large">*</a>
+            <a onclick="btnClique('/')" class="waves-effect btn-calcular blue darken-3 waves-light btn-large">/</a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+function returnTipoOperacao(resultado) {
+
+let adicao = resultado.match(/\+/g) ? resultado.match(/\+/g).length : 0
+let divisao = resultado.match(/\//g) ? resultado.match(/\//g).length : 0
+let multiplicacao = resultado.match(/\*/g) ? resultado.match(/\*/g).length : 0
+let subtracao = resultado.match(/\-/g) ? resultado.match(/\-/g).length : 0
+
+if (adicao == 1) {
+    return '+'
+} else if (divisao == 1) {
+    return '/'
+} else if (multiplicacao == 1) {
+    return '*'
+} else if (subtracao == 1 && resultado.indexOf('-')) {
+    return '-'
+} else {
+    return false
+}
+}
+
+
+function returnTermosOperacao(termos) {
+
+let adicao = termos.split('+')
+let subtracao = termos.split('-')
+let multiplicacao = termos.split('*')
+let divisao = termos.split('/')
+
+if (Boolean(adicao[1])) {
+    return adicao
+} else if (Boolean(subtracao[1])) {
+    return subtracao
+} else if (Boolean(multiplicacao[1])) {
+    return multiplicacao
+} else if (Boolean(divisao[1])) {
+    return divisao
+} else {
+    return false
+}
+}
+
+function returnarResultadoOperacao(operador, termos) {
+
+if (operador == '+' && termos) {
+    return parseInt(termos[0]) + parseInt(termos[1])
+} else if (operador == '-' && termos) {
+    return parseInt(termos[0]) - parseInt(termos[1])
+} else if (operador == '*' && termos) {
+    return parseInt(termos[0]) * parseInt(termos[1])
+} else if (operador == '/' && termos) {
+    return parseInt(termos[0]) / parseInt(termos[1])
+} else {
+    return false
+}
+
+}
+
+function addDigito(valorDisplay, digito, operacao) {
+console.log('operação', operacao)
+console.log('sim', valorDisplay.indexOf('-'))
+
+if (valorDisplay == '0') {
+    return digito
+} else if (valorDisplay > '0' && digito == '=') {
+    return valorDisplay
+} else if (operacao && (digito == '+' || digito == '-' || digito == '*' || digito == '/')) {
+    return valorDisplay
+} else if (valorDisplay.indexOf('-') == 0 && (digito == '-' || digito == '*' || digito == '/')){
+    console.log('sim', valorDisplay.indexOf('-'))
+    return valorDisplay
+} else {
+    valorDisplay = valorDisplay + '' + digito;
+    return valorDisplay
+}
+
+}
+
+
+function btnClique(digito) {
+
+var resultadoFinal = 0
+var displayCalc = $('#resultadoCalc')
+var resultadoCalc = displayCalc.html();
+var operacao = returnTipoOperacao(resultadoCalc)
+var termos = returnTermosOperacao(resultadoCalc)
+
+if (digito == 'C') {
+    displayCalc.html(0)
+}
+else if (digito == '+' || digito == '-' || digito == '*' || digito == '/' || digito == '=') {
+    console.log('digitou o operador', digito)
+    if (displayCalc.html() == '0') {
+        console.log('apertei operador sem valor', digito)
+        displayCalc.html('0')
+    }
+    else {
+        if (operacao && termos) {
+            console.log('fazaendo calculo', operacao, termos)
+            resultadoFinal = returnarResultadoOperacao(operacao, termos)
+            displayCalc.html(resultadoFinal)
+        } else {
+            let digitoAdicionado = addDigito(resultadoCalc, digito, operacao)
+            displayCalc.html(digitoAdicionado)
+        }
+    }
+} else {
+    let valorDisplay = addDigito(resultadoCalc, digito, operacao)
+    displayCalc.html(valorDisplay)
+}
+
+}
+</script>
