@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form id="formVal">
+      <input type="text" name="coat" value="1" />
+      <input type="number" name="jacket" value="2" />
+      <input type="text" id="cpf" name="jeans" />
+      <input type="number" name="guid" value="4" />
+  
+      <input name="dt2" type="checkbox">
+      <input name="dt4" type="color">
+      <input name="dt5" type="date">
+      <br>
+    <label>
+      <input name="dt2" type="radio" />
+      <span>Red</span>
+    </label>
+    <label>
+      <input name="dt3" type="checkbox" />
+      <span>Red</span>
+    </label>
+    <br>
+      <input name="dt6" type="datetime-local">
+      <input name="dt7" type="email"><br>
+      <input name="dt8" type="file"><br>
+      <input name="dt9" type="hidden"><br>
+      <input name="dt11" type="month"><br>
+      <input name="dt12" type="number"><br>
+      <input name="dt13" type="password"><br>
+      <input name="dt14" type="radio"><br>
+      <input name="dt15" type="range"><br>
+      <input name="dt16" type="reset"><br>
+      <input name="dt17" type="search"><br>
+      <input name="dt19" type="tel"><br>
+      <input name="dt20" type="time"><br>
+      <input name="dt21" type="url"><br>
+      <input name="dt22" type="week">
+      
+      <select name="medico" class="browser-default">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="Jr.High">Jr.High</option>
+          <option value="HighSchool">HighSchool</option>
+          <option value="College">College</option>
+      </select>
+      <label>Materialize Select</label>
+  
+      <textarea name="something">lorem ipsum</textarea>
+      <input type="submit" value="Enviar" />
+  </form>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jonathansp/jquery-serializeFields@master/src/jquery-serializeFields.js"></script>
+  <script>
+    $('form').submit(function(){
+      var dados = $('form').serializeFields();
+      console.log(dados);
+      $('#resultado').html(JSON.stringify(dados));
+      return false
+    })
+  </script>
+</html>
